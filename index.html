@@ -3,79 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Gallery</title>
+<title>Shorts App</title>
 
 <style>
 body{
     margin:0;
+    background:black;
     font-family:Arial;
-    background:#000;
+    overflow:hidden;
+}
+
+/* ===== TOP BAR ===== */
+.top{
+    position:fixed;
+    top:10px;
+    left:10px;
+    z-index:999;
+    color:white;
+    background:rgba(0,0,0,0.5);
+    padding:8px 12px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    height:100vh;
+    overflow-y:scroll;
+    scroll-snap-type:y mandatory;
+}
+
+/* ===== EACH VIDEO ===== */
+.video-box{
+    height:100vh;
+    scroll-snap-align:start;
+    position:relative;
+}
+
+video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ===== TEXT ===== */
+.info{
+    position:absolute;
+    bottom:80px;
+    left:15px;
     color:white;
 }
 
-h1{
-    text-align:center;
-    padding:20px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-    padding:10px;
-}
-
-.card{
-    position:relative;
-    border-radius:15px;
-    overflow:hidden;
-    cursor:pointer;
-}
-
-.card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    display:block;
-    filter:brightness(0.7);
-}
-
-.card span{
-    position:absolute;
-    bottom:10px;
-    left:10px;
+.title{
+    font-size:20px;
     font-weight:bold;
+}
+
+.desc{
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* ===== RIGHT ACTIONS ===== */
+.actions{
+    position:absolute;
+    right:15px;
+    bottom:120px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.btn{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.15);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:20px;
+    backdrop-filter:blur(10px);
 }
 </style>
 </head>
 
 <body>
 
-<h1>My Videos</h1>
+<div class="top">🔥 My Shorts App</div>
 
-<div class="grid">
+<div class="container" id="container"></div>
 
-    <div class="card" onclick="location.href='video1.html'">
-        <img src="thumb1.jpg">
-        <span>Video 1</span>
-    </div>
+<script>
+// ===== تحميل الفيديوهات من JSON =====
+fetch("data.json")
+.then(res => res.json())
+.then(data => {
+    const container = document.getElementById("container");
 
-    <div class="card" onclick="location.href='video2.html'">
-        <img src="thumb2.jpg">
-        <span>Video 2</span>
-    </div>
+    data.forEach((video, index) => {
 
-    <div class="card" onclick="location.href='video3.html'">
-        <img src="thumb3.jpg">
-        <span>Video 3</span>
-    </div>
+        const div = document.createElement("div");
+        div.className = "video-box";
 
-    <div class="card" onclick="location.href='video4.html'">
-        <img src="thumb4.jpg">
-        <span>Video 4</span>
-    </div>
+        div.innerHTML = `
+            <video muted loop playsinline>
+                <source src="${video.file}" type="video/mp4">
+            </video>
 
-</div>
+            <div class="info">
+                <div class="title">${video.title}</div>
+                <div class="desc">${video.desc}</div>
+            </div>
+
+            <div class="actions">
+                <div class="btn">❤️</div>
+                <div class="btn">💬</div>
+                <div class="btn">🔗</div>
+            </div>
+        `;
+
+        container.appendChild(div);
+    });
+
+    // ===== تشغيل الفيديو الظاهر فقط =====
+    const videos = document.querySelectorAll("video");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting){
+                entry.target.play();
+            } else {
+                entry.target.pause();
+            }
+        });
+    }, { threshold: 0.7 });
+
+    videos.forEach(v => observer.observe(v));
+});
+</script>
 
 </body>
 </html>
