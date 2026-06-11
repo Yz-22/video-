@@ -7,11 +7,21 @@
   {
     "title": "Video 2",
     "desc": "Awesome short 2",
-    "file": "videos/2.mp4"
+    "file": "videos/1.mp4"
   },
   {
     "title": "Video 3",
     "desc": "Awesome short 3",
     "file": "videos/3.mp4"
+  }
+   {
+    "title": "Video 4",
+    "desc": "Awesome short 3",
+    "file": "videos/4.mp4"
+  }
+   {
+    "title": "Video jan",
+    "desc": "Awesome short 3",
+    "file": "videos/jan.mp4"
   }
 ]
