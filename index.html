@@ -20,6 +20,7 @@ body{
     font-family:Arial,sans-serif;
 }
 
+/* كل فيديو */
 .short{
     width:100%;
     height:100vh;
@@ -37,9 +38,10 @@ body{
     object-fit:cover;
 }
 
+/* النص */
 .overlay{
     position:absolute;
-    bottom:30px;
+    bottom:40px;
     left:20px;
     color:#fff;
     z-index:10;
@@ -48,49 +50,26 @@ body{
 .title{
     font-size:22px;
     font-weight:bold;
-    margin-bottom:8px;
 }
 
 .desc{
     font-size:14px;
-    opacity:.9;
+    opacity:.8;
 }
 
+/* اسم الموقع */
 .logo{
     position:fixed;
     top:15px;
     left:15px;
     color:white;
-    font-size:20px;
+    font-size:18px;
     font-weight:bold;
     z-index:999;
     background:rgba(0,0,0,.4);
     padding:8px 15px;
     border-radius:20px;
     backdrop-filter:blur(10px);
-}
-
-.actions{
-    position:absolute;
-    right:15px;
-    bottom:120px;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-    z-index:10;
-}
-
-.btn{
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(10px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:white;
-    font-size:24px;
 }
 </style>
 </head>
@@ -100,67 +79,54 @@ body{
 <div class="logo">MY SHORTS</div>
 
 <div class="short">
-    <video autoplay muted loop controls playsinline>
+    <video autoplay muted loop playsinline>
         <source src="videos/1 (1).mp4" type="video/mp4">
     </video>
-
     <div class="overlay">
         <div class="title">Video 1</div>
         <div class="desc">Awesome Short Video</div>
     </div>
-
-   
 </div>
 
 <div class="short">
-    <video autoplay muted loop controls playsinline>
+    <video autoplay muted loop playsinline>
         <source src="videos/2.mp4" type="video/mp4">
     </video>
-
     <div class="overlay">
         <div class="title">Video 2</div>
         <div class="desc">Second Short Video</div>
     </div>
-
-    
 </div>
 
 <div class="short">
-    <video autoplay muted loop controls playsinline>
+    <video autoplay muted loop playsinline>
         <source src="videos/3.mp4" type="video/mp4">
     </video>
-
     <div class="overlay">
         <div class="title">Video 3</div>
         <div class="desc">Third Short Video</div>
     </div>
-
-    
 </div>
 
-    <div class="short">
-    <video autoplay muted loop controls playsinline>
+<div class="short">
+    <video autoplay muted loop playsinline>
         <source src="videos/4.mp4" type="video/mp4">
     </video>
-
     <div class="overlay">
         <div class="title">Video 4</div>
-        <div class="desc">Third Short Video</div>
+        <div class="desc">Fourth Video</div>
     </div>
-
 </div>
 
-    <div class="short">
-    <video autoplay muted loop controls playsinline>
+<div class="short">
+    <video autoplay muted loop playsinline>
         <source src="videos/jan.mp4" type="video/mp4">
     </video>
-
     <div class="overlay">
-        <div class="title">Video jan </div>
-        <div class="desc">Third Short Video</div>
-    </div>
-
+        <div class="title">Video Jan</div>
+        <div class="desc">Fifth Video</div>
     </div>
 </div>
+
 </body>
 </html>
